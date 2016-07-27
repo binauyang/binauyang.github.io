@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -84,15 +84,38 @@
 
 
 
-<meta name="description" content="最炎热的夏天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bin Auyang's blog">
-<meta property="og:url" content="http://yoursite.com/tags/折腾/index.html">
+<meta name="description" content="在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？
+
+我们先来看看merge操作：
+
+假设我们开始在master分支上工作，有一个commit(1) 
+接着我们切一个dev分支出来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git如何撤销已经merge的分支？">
+<meta property="og:url" content="http://yoursite.com/2016/07/26/git_revert_merge/index.html">
 <meta property="og:site_name" content="Bin Auyang's blog">
-<meta property="og:description" content="最炎热的夏天">
+<meta property="og:description" content="在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？
+
+我们先来看看merge操作：
+
+假设我们开始在master分支上工作，有一个commit(1) 
+接着我们切一个dev分支出来">
+<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/1.png">
+<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/2.png">
+<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/3.png">
+<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/4.png">
+<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/5.png">
+<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/6.png">
+<meta property="og:updated_time" content="2016-07-27T13:21:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bin Auyang's blog">
-<meta name="twitter:description" content="最炎热的夏天">
+<meta name="twitter:title" content="git如何撤销已经merge的分支？">
+<meta name="twitter:description" content="在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？
+
+我们先来看看merge操作：
+
+假设我们开始在master分支上工作，有一个commit(1) 
+接着我们切一个dev分支出来">
+<meta name="twitter:image" content="http://yoursite.com/img/git_revert_merge/1.png">
 
 
 
@@ -113,9 +136,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/折腾/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/26/git_revert_merge/"/>
 
-  <title> 标签: 折腾 | Bin Auyang's blog </title>
+  <title> git如何撤销已经merge的分支？ | Bin Auyang's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +159,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,46 +257,154 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        折腾
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git如何撤销已经merge的分支？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-26T17:27:15+08:00" content="2016-07-26">
+              2016-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/26/git_revert_merge/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/26/git_revert_merge/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote>
+<p>在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？</p>
+</blockquote>
+<p>我们先来看看merge操作：</p>
+<ol>
+<li>假设我们开始在<code>master</code>分支上工作，有一个commit(1)<br><img src="/img/git_revert_merge/1.png" alt=""> </li>
+<li>接着我们切一个<code>dev</code>分支出来<br><img src="/img/git_revert_merge/2.png" alt=""> </li>
+</ol>
+<a id="more"></a>
+<ol>
+<li>在<code>dev</code>分支上提交一个commit(d1)<br><img src="/img/git_revert_merge/3.png" alt=""> </li>
+<li>接着再切回<code>master</code>分支，提交一个commit(2)<br><img src="/img/git_revert_merge/4.png" alt=""> </li>
+<li>这个时候我们想把<code>dev</code>分支merge进<code>master</code>分支<br><img src="/img/git_revert_merge/5.png" alt=""> </li>
+</ol>
+<p>我们来看看这次的<code>git log</code></p>
+<ul>
+<li>d1被插在1和2中间，这是因为merge是按照修改时间来合并的  [1]</li>
+<li>git自动帮我们生成了一个<code>merge commit</code>，且记录了<code>merge: 5faef94 5a7f607</code>，再仔细看我们会发现，<code>5faef94</code>就是commit(1)，而<code>5a7f607</code>则是commit(d1)!，也就是说这个<code>merge commit</code>其实是分别指向<code>master</code>和<code>dev</code>的<code>head</code>的。</li>
+</ul>
+<p><strong>在你合并两个分支并试图撤销时，Git 并不知道你到底需要保留哪一个分支上所做的修改。从 Git 的角度来看，master 分支和 dev 在地位上是完全平等的，只是在 workflow 中，master 被人为约定成了「主分支」。</strong></p>
+<p>所以git需要你提供<code>m</code>来指定「主线」，<code>m</code>的值可以是1或2，分别对应<code>master</code>和<code>dev</code>分支的<code>head</code>。<br><img src="/img/git_revert_merge/6.png" alt=""> </p>
+<p>看到了吗？在<code>merge commit</code>之后又有了一次commit，<code>master</code>分支的修改得以保留，而<code>dev</code>分支的修改全部被撤消了~</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/07/25/hexo/" itemprop="url">
-              
-                <span itemprop="name">Hexo搭建博客日记</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-25T22:08:08+08:00"
-              content="2016-07-25" >
-          07-25
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/25/hexo/" rel="next" title="Hexo搭建博客日记">
+                <i class="fa fa-chevron-left"></i> Hexo搭建博客日记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/27/crontab/" rel="prev" title="crontab基本用法">
+                crontab基本用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -281,6 +412,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/26/git_revert_merge/"
+           data-title="git如何撤销已经merge的分支？" data-url="http://yoursite.com/2016/07/26/git_revert_merge/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -300,8 +439,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/akaki_haruko.png"
@@ -378,6 +526,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -474,6 +633,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

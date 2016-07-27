@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -84,15 +84,25 @@
 
 
 
-<meta name="description" content="最炎热的夏天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bin Auyang's blog">
-<meta property="og:url" content="http://yoursite.com/tags/折腾/index.html">
+<meta name="description" content="我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。
+
+crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。
+了解crontab语法crontab文件的各个域的意义如下：分 时 日 月 星期 命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crontab基本用法">
+<meta property="og:url" content="http://yoursite.com/2016/07/27/crontab/index.html">
 <meta property="og:site_name" content="Bin Auyang's blog">
-<meta property="og:description" content="最炎热的夏天">
+<meta property="og:description" content="我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。
+
+crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。
+了解crontab语法crontab文件的各个域的意义如下：分 时 日 月 星期 命令">
+<meta property="og:updated_time" content="2016-07-27T15:02:05.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bin Auyang's blog">
-<meta name="twitter:description" content="最炎热的夏天">
+<meta name="twitter:title" content="crontab基本用法">
+<meta name="twitter:description" content="我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。
+
+crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。
+了解crontab语法crontab文件的各个域的意义如下：分 时 日 月 星期 命令">
 
 
 
@@ -113,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/折腾/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/27/crontab/"/>
 
-  <title> 标签: 折腾 | Bin Auyang's blog </title>
+  <title> crontab基本用法 | Bin Auyang's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +146,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,46 +244,151 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        折腾
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                crontab基本用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-27T22:04:52+08:00" content="2016-07-27">
+              2016-07-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/27/crontab/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/27/crontab/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote>
+<p>我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。</p>
+</blockquote>
+<p>crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。</p>
+<h3 id="了解crontab语法"><a href="#了解crontab语法" class="headerlink" title="了解crontab语法"></a>了解crontab语法</h3><p>crontab文件的各个域的意义如下：<br>分 时 日 月 星期 命令</p>
+<a id="more"></a>
+<p>我们来看几个例子：</p>
+<p><code>30 90 * * * /app/bin/cleanup.sh</code> 每晚21:30运行/app/bin/下的cleanup.sh</p>
+<p><code>45 4 1,10,22 * * /app/bin/backup.sh</code> 每月1、10、22号的4:45运行/app/bin下的backup.sh</p>
+<p><code>10 1 * * 6，0 /bin/find -name &quot;core&quot; -exec rm {} \;</code> 每周六、周日的1:10运行一个find命令</p>
+<p><code>0,30 18-23 * * * /app/bin/dbcheck.sh</code> 每天18:00-23:00每隔30分钟执行/app/bin下的dbcheck.sh</p>
+<h3 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h3><p>当使用crontab来执行shell脚本时，需要提供脚本的<strong>绝对路径</strong>，不要假设cron知道所需要的特殊环境，它并不知道。</p>
+<h3 id="编辑crontab文件"><a href="#编辑crontab文件" class="headerlink" title="编辑crontab文件"></a>编辑crontab文件</h3><ul>
+<li>创建一个名<code>&lt;user&gt;cron</code>的文件：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim rootcron</div></pre></td></tr></table></figure>
+<ul>
+<li>在该文件中加入如下内容：<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># echo the date to the console every 15 minutes between 6pm and 6am</div><div class="line">0,15,30,45 18-06 * * * /bin/echo `date` &gt;  /dev/console</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="提交crontab作业"><a href="#提交crontab作业" class="headerlink" title="提交crontab作业"></a>提交crontab作业</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab rootcron</div></pre></td></tr></table></figure>
+<h3 id="列出crontab文件"><a href="#列出crontab文件" class="headerlink" title="列出crontab文件"></a>列出crontab文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab -l</div></pre></td></tr></table></figure>
+<h3 id="删除crontab文件"><a href="#删除crontab文件" class="headerlink" title="删除crontab文件"></a>删除crontab文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab -r</div></pre></td></tr></table></figure>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/07/25/hexo/" itemprop="url">
-              
-                <span itemprop="name">Hexo搭建博客日记</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-25T22:08:08+08:00"
-              content="2016-07-25" >
-          07-25
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/26/git_revert_merge/" rel="next" title="git如何撤销已经merge的分支？">
+                <i class="fa fa-chevron-left"></i> git如何撤销已经merge的分支？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -281,6 +396,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/27/crontab/"
+           data-title="crontab基本用法" data-url="http://yoursite.com/2016/07/27/crontab/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -300,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/akaki_haruko.png"
@@ -378,6 +510,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解crontab语法"><span class="nav-number">1.</span> <span class="nav-text">了解crontab语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注："><span class="nav-number">2.</span> <span class="nav-text">注：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑crontab文件"><span class="nav-number">3.</span> <span class="nav-text">编辑crontab文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交crontab作业"><span class="nav-number">4.</span> <span class="nav-text">提交crontab作业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出crontab文件"><span class="nav-number">5.</span> <span class="nav-text">列出crontab文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除crontab文件"><span class="nav-number">6.</span> <span class="nav-text">删除crontab文件</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -474,6 +617,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
