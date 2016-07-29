@@ -383,6 +383,10 @@ crontab可以允许用户提交、编辑或删除相应的作业。每个用户�
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/07/28/netty/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -453,7 +457,7 @@ crontab可以允许用户提交、编辑或删除相应的作业。每个用户�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -722,7 +726,7 @@ function addCount(Counter) {
 				counter.increment("time");
 				counter.save(null, {
 					success: function(counter) {
-						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content = $(document.getElementById(url)).text() + ' ' + counter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(counter, error) {
@@ -737,7 +741,7 @@ function addCount(Counter) {
 				newcounter.save(null, {
 					success: function(newcounter) {
 					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content = $(document.getElementById(url)).text() + ' ' + newcounter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(newcounter, error) {
