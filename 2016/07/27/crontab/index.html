@@ -86,7 +86,7 @@
 
 <meta name="description" content="我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。
 
-crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。
+crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个crontab文件来保存作业信息。
 了解crontab语法crontab文件的各个域的意义如下：分 时 日 月 星期 命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="crontab基本用法">
@@ -94,15 +94,17 @@ crontab可以允许用户提交、编辑或删除相应的作业。每个用户�
 <meta property="og:site_name" content="Bin Auyang's blog">
 <meta property="og:description" content="我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。
 
-crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。
+crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个crontab文件来保存作业信息。
 了解crontab语法crontab文件的各个域的意义如下：分 时 日 月 星期 命令">
-<meta property="og:updated_time" content="2016-07-27T15:02:05.000Z">
+<meta property="og:image" content="http://yoursite.com/img/crontab/1.png">
+<meta property="og:updated_time" content="2016-08-01T06:42:00.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="crontab基本用法">
 <meta name="twitter:description" content="我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。
 
-crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。
+crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个crontab文件来保存作业信息。
 了解crontab语法crontab文件的各个域的意义如下：分 时 日 月 星期 命令">
+<meta name="twitter:image" content="http://yoursite.com/img/crontab/1.png">
 
 
 
@@ -324,16 +326,19 @@ crontab可以允许用户提交、编辑或删除相应的作业。每个用户�
         <blockquote>
 <p>我们可能有时候会有这种需求：每周五晚上的9点30运行某个python脚本来进行某项作业，这时就可以用crontab了。</p>
 </blockquote>
-<p>crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个ctontab文件来保存作业信息。</p>
-<h3 id="了解crontab语法"><a href="#了解crontab语法" class="headerlink" title="了解crontab语法"></a>了解crontab语法</h3><p>crontab文件的各个域的意义如下：<br>分 时 日 月 星期 命令</p>
+<p>crontab可以允许用户提交、编辑或删除相应的作业。每个用户可以有一个crontab文件来保存作业信息。</p>
+<h1 id="了解crontab语法"><a href="#了解crontab语法" class="headerlink" title="了解crontab语法"></a>了解crontab语法</h1><p>crontab文件的各个域的意义如下：<br>分 时 日 月 星期 命令</p>
 <a id="more"></a>
 <p>我们来看几个例子：</p>
-<p><code>30 90 * * * /app/bin/cleanup.sh</code> 每晚21:30运行/app/bin/下的cleanup.sh</p>
+<p><code>30 9 * * * /app/bin/cleanup.sh</code> 每晚21:30运行/app/bin/下的cleanup.sh</p>
 <p><code>45 4 1,10,22 * * /app/bin/backup.sh</code> 每月1、10、22号的4:45运行/app/bin下的backup.sh</p>
 <p><code>10 1 * * 6，0 /bin/find -name &quot;core&quot; -exec rm {} \;</code> 每周六、周日的1:10运行一个find命令</p>
 <p><code>0,30 18-23 * * * /app/bin/dbcheck.sh</code> 每天18:00-23:00每隔30分钟执行/app/bin下的dbcheck.sh</p>
-<h3 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h3><p>当使用crontab来执行shell脚本时，需要提供脚本的<strong>绝对路径</strong>，不要假设cron知道所需要的特殊环境，它并不知道。</p>
-<h3 id="编辑crontab文件"><a href="#编辑crontab文件" class="headerlink" title="编辑crontab文件"></a>编辑crontab文件</h3><ul>
+<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><p>当使用crontab来执行shell脚本时，需要提供脚本的<strong>绝对路径</strong>，不要假设cron知道所需要的特殊环境，它并不知道。</p>
+<h1 id="用户级设定"><a href="#用户级设定" class="headerlink" title="用户级设定"></a>用户级设定</h1><blockquote>
+<p>当使用者使用<code>crontab</code>这个命令来新建作业后，该项作业会被记录到<code>/var/spool/cron</code>里去，且是以账号来区分不同作业。</p>
+</blockquote>
+<h4 id="编辑crontab文件"><a href="#编辑crontab文件" class="headerlink" title="编辑crontab文件"></a>编辑crontab文件</h4><ul>
 <li>创建一个名<code>&lt;user&gt;cron</code>的文件：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim rootcron</div></pre></td></tr></table></figure>
@@ -341,9 +346,28 @@ crontab可以允许用户提交、编辑或删除相应的作业。每个用户�
 <li>在该文件中加入如下内容：<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># echo the date to the console every 15 minutes between 6pm and 6am</div><div class="line">0,15,30,45 18-06 * * * /bin/echo `date` &gt;  /dev/console</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="提交crontab作业"><a href="#提交crontab作业" class="headerlink" title="提交crontab作业"></a>提交crontab作业</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab rootcron</div></pre></td></tr></table></figure>
-<h3 id="列出crontab文件"><a href="#列出crontab文件" class="headerlink" title="列出crontab文件"></a>列出crontab文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab -l</div></pre></td></tr></table></figure>
-<h3 id="删除crontab文件"><a href="#删除crontab文件" class="headerlink" title="删除crontab文件"></a>删除crontab文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab -r</div></pre></td></tr></table></figure>
+<h4 id="提交crontab作业"><a href="#提交crontab作业" class="headerlink" title="提交crontab作业"></a>提交crontab作业</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab rootcron</div></pre></td></tr></table></figure>
+<h4 id="列出crontab文件"><a href="#列出crontab文件" class="headerlink" title="列出crontab文件"></a>列出crontab文件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab -l</div></pre></td></tr></table></figure>
+<h4 id="删除crontab文件"><a href="#删除crontab文件" class="headerlink" title="删除crontab文件"></a>删除crontab文件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">crontab -r</div></pre></td></tr></table></figure>
+<h1 id="系统级设定"><a href="#系统级设定" class="headerlink" title="系统级设定"></a>系统级设定</h1><h4 id="直接编辑-etc-crontab"><a href="#直接编辑-etc-crontab" class="headerlink" title="直接编辑/etc/crontab"></a>直接编辑<code>/etc/crontab</code></h4><blockquote>
+<p>上文的crontab是个命令，而<code>/etc/crontab</code>是个文本</p>
+</blockquote>
+<p><img src="/img/crontab/1.png" alt=""></p>
+<p>注意这里的语法与<code>crontab -e</code> 稍微有点不同：第六位不是指令，而是「执行指令的身份」，而第七位才是指令。</p>
+<h4 id="在-etc-cron-d下建立任务文件"><a href="#在-etc-cron-d下建立任务文件" class="headerlink" title="在/etc/cron.d下建立任务文件"></a>在<code>/etc/cron.d</code>下建立任务文件</h4><h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ul>
+<li>一般来说，cron预设有三个地方会有任务文件，分别是：<ul>
+<li><code>/etc/crontab</code></li>
+<li><code>/etc/cron.d/*</code></li>
+<li><code>/var/spool/cron/*</code></li>
+</ul>
+</li>
+<li>用户级别的行为适用<code>crontab -e</code>：如果是依据个人需求来建立任务，建议直接适用<code>crontab -e</code>。这样也能保证你的指令行为不会被其他用户看到。</li>
+<li>系统维护管理使用<code>vim /etc/crontab</code>：如果你这个任务是系统的重要工作，为了让自己管理方便，同时容易追踪，建议直接写入<code>/etc/crontab</code></li>
+<li>自己开发软件适用<code>vim /etc/corn.d/newfile</code>：如果是自己开发软件，当然最好就是使用全新的任务文件，并且置于<code>/etc/crontab.d</code>目录下即可。</li>
+</ul>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ol>
+<li><a href="http://linux.vbird.org/linux_basic/0430cron.php#crontab_user" target="_blank" rel="external">http://linux.vbird.org/linux_basic/0430cron.php#crontab_user</a></li>
+</ol>
 
       
     </div>
@@ -530,7 +554,7 @@ crontab可以允许用户提交、编辑或删除相应的作业。每个用户�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解crontab语法"><span class="nav-number">1.</span> <span class="nav-text">了解crontab语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注："><span class="nav-number">2.</span> <span class="nav-text">注：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑crontab文件"><span class="nav-number">3.</span> <span class="nav-text">编辑crontab文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交crontab作业"><span class="nav-number">4.</span> <span class="nav-text">提交crontab作业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出crontab文件"><span class="nav-number">5.</span> <span class="nav-text">列出crontab文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除crontab文件"><span class="nav-number">6.</span> <span class="nav-text">删除crontab文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#了解crontab语法"><span class="nav-number">1.</span> <span class="nav-text">了解crontab语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注："><span class="nav-number">1.0.0.1.</span> <span class="nav-text">注：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户级设定"><span class="nav-number">2.</span> <span class="nav-text">用户级设定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑crontab文件"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">编辑crontab文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提交crontab作业"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">提交crontab作业</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出crontab文件"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">列出crontab文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除crontab文件"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">删除crontab文件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统级设定"><span class="nav-number">3.</span> <span class="nav-text">系统级设定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接编辑-etc-crontab"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">直接编辑/etc/crontab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-etc-cron-d下建立任务文件"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">在/etc/cron.d下建立任务文件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
           </div>
         </section>
