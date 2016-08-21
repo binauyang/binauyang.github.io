@@ -1,0 +1,792 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="缓存在很多场景下都是很有用的，例如，当需要计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。
+
+LoadingCache代码示例public static LoadingCache&amp;lt;String, String&amp;gt; cache = CacheBuilder            .newBuilder().maximumSize(100).ref">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LoadingCache学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/08/17/LoadingCache/index.html">
+<meta property="og:site_name" content="Bin Auyang's blog">
+<meta property="og:description" content="缓存在很多场景下都是很有用的，例如，当需要计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。
+
+LoadingCache代码示例public static LoadingCache&amp;lt;String, String&amp;gt; cache = CacheBuilder            .newBuilder().maximumSize(100).ref">
+<meta property="og:updated_time" content="2016-08-15T06:59:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LoadingCache学习笔记">
+<meta name="twitter:description" content="缓存在很多场景下都是很有用的，例如，当需要计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。
+
+LoadingCache代码示例public static LoadingCache&amp;lt;String, String&amp;gt; cache = CacheBuilder            .newBuilder().maximumSize(100).ref">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/17/LoadingCache/"/>
+
+  <title> LoadingCache学习笔记 | Bin Auyang's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Bin Auyang's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LoadingCache学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T00:14:09+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/17/LoadingCache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/LoadingCache/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/17/LoadingCache/" class="leancloud_visitors" data-flag-title="LoadingCache学习笔记">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>缓存在很多场景下都是很有用的，例如，当需要计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。</p>
+</blockquote>
+<h2 id="LoadingCache代码示例"><a href="#LoadingCache代码示例" class="headerlink" title="LoadingCache代码示例"></a>LoadingCache代码示例</h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> LoadingCache&lt;String, String&gt; cache = CacheBuilder</div><div class="line">            .newBuilder().maximumSize(<span class="number">100</span>).refreshAfterWrite(<span class="number">2</span>, TimeUnit.MILLISECONDS)</div><div class="line">            .removalListener(<span class="keyword">new</span> RemovalListener() &#123;</div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRemoval</span><span class="params">(RemovalNotification removalNotification)</span> </span>&#123;</div><div class="line">                    System.out.println(removalNotification.getKey() + <span class="string">"被移除"</span> + removalNotification.getValue());</div><div class="line">                &#125;</div><div class="line">            &#125;).build(<span class="keyword">new</span> CacheLoader&lt;String, String&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> String <span class="title">load</span><span class="params">(String key)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                    String value = <span class="string">"hello "</span> + key;</div><div class="line">                    System.out.println(value);</div><div class="line">                    <span class="keyword">return</span> value;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> ListenableFuture&lt;String&gt; <span class="title">reload</span><span class="params">(String key, String oldValue)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                    System.out.println(<span class="string">"reload "</span> + key + <span class="string">"oldValue "</span> + oldValue);</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">super</span>.reload(key, oldValue);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
+<p>如上述代码所示，<code>LoadingCache</code>实例通过<code>CacheBuilder</code><a href="http://blog.csdn.net/top_code/article/details/8469297" target="_blank" rel="external">生成器模式</a>获取。但是自定义你的缓存才是最有趣的部分。</p>
+<a id="more"></a>
+<h3 id="CacheLoader"><a href="#CacheLoader" class="headerlink" title="CacheLoader"></a>CacheLoader</h3><p>只需要简单的实现<code>V load(K key) throws Exception</code>方法就可以创建自己的<code>CacheLoader</code>。<code>load</code>方法原子地向缓存加载新值。</p>
+<h3 id="查询LoadingCache"><a href="#查询LoadingCache" class="headerlink" title="查询LoadingCache"></a>查询LoadingCache</h3><ul>
+<li><code>get(K)</code>方法<br>  这个方法要么返回已经缓存的值，要么使用<code>CacheLoader</code>向缓存原子地加载新值。由于<code>CacheLoader</code>可能抛出异常，<code>get(K)</code>也需要声明为抛出<code>ExecutionException</code>异常。</li>
+<li><code>getUnchecked(K)</code>方法<br>如果定义的CacheLoader没有声明任何检查性异常，则可以通过<code>getUnchecked(K)</code>查找缓存。</li>
+<li><code>get(K, Callable&lt;V&gt;)</code>方法<br>这个方法返回缓存中相应的值，或者用给定的Callable运算并把结果加入到缓存中。</li>
+</ul>
+<h3 id="显式插入"><a href="#显式插入" class="headerlink" title="显式插入"></a>显式插入</h3><p>-<code>put(key, value)</code>方法<br>使用put方法可以直接向缓存中插入值，这样做会覆盖掉之前的值。</p>
+<h3 id="缓存回收"><a href="#缓存回收" class="headerlink" title="缓存回收"></a>缓存回收</h3><p><code>LoadingCache</code>提供三种基本的缓存回收方式：</p>
+<ol>
+<li>基于容量回收</li>
+<li>定时回收</li>
+<li>基于引用回收</li>
+</ol>
+<h4 id="基于容量回收（size-based-eviction）"><a href="#基于容量回收（size-based-eviction）" class="headerlink" title="基于容量回收（size-based eviction）"></a>基于容量回收（size-based eviction）</h4><p>使用<code>CacheBuilder.maximumSize(long)</code>即可规定缓存项的数目不超过固定值。缓存将尝试回收<strong>最近没有使用或总体上很少使用的缓存项</strong>。<em>通常来说，这种情况发生在缓存项数目毕竟规定值时，但不保证</em>。</p>
+<h4 id="定时回收（Timed-eviction）"><a href="#定时回收（Timed-eviction）" class="headerlink" title="定时回收（Timed eviction）"></a>定时回收（Timed eviction）</h4><p><code>CacheBuilder</code>提供两种定时回收的方法：</p>
+<ul>
+<li><code>expireAfterAccess(long, TimeUnit)</code><br>  缓存项在规定时间内没有被读/写则回收。</li>
+<li><code>expireAfterWrite(long, TimeUnit)</code><br>  缓存项在给定时间内没有被写访问，则回收。</li>
+</ul>
+<h4 id="基于引用的回收（Reference-based-eviction）"><a href="#基于引用的回收（Reference-based-eviction）" class="headerlink" title="基于引用的回收（Reference-based eviction）"></a>基于引用的回收（Reference-based eviction）</h4><p>通过使用弱引用的key、弱引用的value、或软引用的value可以把缓存设置为允许垃圾回收：</p>
+<ul>
+<li><code>CacheBuilder.weakKeys()</code>：使用弱引用存储key。当key没有其他（强或软）引用时，缓存项可以被GC。</li>
+<li><code>CacheBuilder.weakValues()</code>：使用弱引用存储value。当value没有其他（强或软）引用时，缓存项可以被GC。</li>
+<li><code>CacheBuilder.softValues()</code>：使用软引用存储value。软引用只有在内存空间不足时才会按照全局最少使用的引用进行顺序回收。</li>
+</ul>
+<h3 id="显式清除"><a href="#显式清除" class="headerlink" title="显式清除"></a>显式清除</h3><p>我们也可以显式的清除缓存项而不用等待它被回收：</p>
+<ul>
+<li><code>Cache.invalidate(key)</code> 个别清除</li>
+<li><code>Cache.invalidateAll(keys)</code> 批量清除</li>
+<li><code>Cache.invalidateAll()</code> 全部清除</li>
+</ul>
+<h3 id="移除监听器"><a href="#移除监听器" class="headerlink" title="移除监听器"></a>移除监听器</h3><p>通过<code>CacheBuilder.removalListener(RemovalListener)</code>可以声明一个监听器，以便在缓存项被移除时做一些额外的操作。</p>
+<h3 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h3><p><code>Cache.refresh(K)</code>：刷新表示为key加载新value，这个过程可以是异步的。在刷新操作进行时，缓存仍然可以向其他线程返回旧值。<br><code>Cache.reload(K, V)</code>：可以扩展刷新时的行为。<br><code>Cache.refreshAfterWrite(long, TimeUnit)</code>：为缓存增加自动定时刷新功能，<strong>但是：缓存项只有在被检索时才会真正刷新。</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException </span>&#123;</div><div class="line">        cache.get(<span class="string">"one"</span>);</div><div class="line">        cache.get(<span class="string">"two"</span>);</div><div class="line">        cache.get(<span class="string">"three"</span>);</div><div class="line">        cache.put(<span class="string">"one"</span>, <span class="string">"test one"</span>);</div><div class="line"><span class="comment">//        cache.get("one");</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hello one</div><div class="line">hello two</div><div class="line">hello three</div><div class="line">one被移除hello one</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException </span>&#123;</div><div class="line">        cache.get(<span class="string">"one"</span>);</div><div class="line">        cache.get(<span class="string">"two"</span>);</div><div class="line">        cache.get(<span class="string">"three"</span>);</div><div class="line">        cache.put(<span class="string">"one"</span>, <span class="string">"test one"</span>);</div><div class="line">        cache.get(<span class="string">"one"</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">hello one</div><div class="line">hello two</div><div class="line">hello three</div><div class="line">one被移除hello one</div><div class="line">reload oneoldValue test one</div><div class="line">hello one</div><div class="line">one被移除test one</div></pre></td></tr></table></figure>
+<p>在执行put操作后并没有刷新缓存，而当再次调用get方法时才会执行刷新操作！</p>
+<p>参考资料：<br>[1] <a href="http://ifeve.com/google-guava-cachesexplained/" target="_blank" rel="external">http://ifeve.com/google-guava-cachesexplained/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/17/waiting on condition&waiting for monitor entry/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/17/检查型异常&非检查型异常/" rel="prev" title="Java检查型异常与非检查型异常">
+                Java检查型异常与非检查型异常 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/17/LoadingCache/"
+           data-title="LoadingCache学习笔记" data-url="http://yoursite.com/2016/08/17/LoadingCache/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/akaki_haruko.png"
+               alt="Bin Auyang" />
+          <p class="site-author-name" itemprop="name">Bin Auyang</p>
+          <p class="site-description motion-element" itemprop="description">最炎热的夏天</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/binauyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/binauyang" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lawrencejing.com" title="Lawrence Jing" target="_blank">Lawrence Jing</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.hdwu.net/" title="hdwu" target="_blank">hdwu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LoadingCache代码示例"><span class="nav-number">1.</span> <span class="nav-text">LoadingCache代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CacheLoader"><span class="nav-number">1.1.</span> <span class="nav-text">CacheLoader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询LoadingCache"><span class="nav-number">1.2.</span> <span class="nav-text">查询LoadingCache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显式插入"><span class="nav-number">1.3.</span> <span class="nav-text">显式插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存回收"><span class="nav-number">1.4.</span> <span class="nav-text">缓存回收</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于容量回收（size-based-eviction）"><span class="nav-number">1.4.1.</span> <span class="nav-text">基于容量回收（size-based eviction）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定时回收（Timed-eviction）"><span class="nav-number">1.4.2.</span> <span class="nav-text">定时回收（Timed eviction）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于引用的回收（Reference-based-eviction）"><span class="nav-number">1.4.3.</span> <span class="nav-text">基于引用的回收（Reference-based eviction）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显式清除"><span class="nav-number">1.5.</span> <span class="nav-text">显式清除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除监听器"><span class="nav-number">1.6.</span> <span class="nav-text">移除监听器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刷新"><span class="nav-number">1.7.</span> <span class="nav-text">刷新</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bin Auyang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"binauyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+  <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("j2eAeUMvLk7QFmE9lqWO8c7P-gzGzoHsz", "hitDutRdUY0oeJcT4YwFG6Iq");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ' 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ' ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ' ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ' ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+  
+
+</body>
+</html>

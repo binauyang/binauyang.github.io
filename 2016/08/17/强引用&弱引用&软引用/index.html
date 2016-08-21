@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -84,38 +84,22 @@
 
 
 
-<meta name="description" content="在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？
+<meta name="description" content="前阵子搬家，收拾东西的时候有些苦恼：新租的房子面积很小，同时有些东西将来可能再也用不着了，所以只能忍痛全部扔掉；有些东西无论如何也不能扔（比如我的毕业证）；有些东西眼下用不着但是将来会有用（比如一大摞的书手动滑稽）所以也暂时不扔；有些东西可能突然某一天就不知道哪儿去了。其实想想这跟Java对象引用还蛮相似的。
 
-我们先来看看merge操作：
-
-假设我们开始在master分支上工作，有一个commit(1) 
-接着我们切一个dev分支出来">
+Java对象的引用分为四种类型，级别从高到低分别是：强引用、软引用、弱引用、虚引用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git如何撤销已经merge的分支？">
-<meta property="og:url" content="http://yoursite.com/2016/07/26/git_revert_merge/index.html">
+<meta property="og:title" content="Java引用类型">
+<meta property="og:url" content="http://yoursite.com/2016/08/17/强引用&弱引用&软引用/index.html">
 <meta property="og:site_name" content="Bin Auyang's blog">
-<meta property="og:description" content="在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？
+<meta property="og:description" content="前阵子搬家，收拾东西的时候有些苦恼：新租的房子面积很小，同时有些东西将来可能再也用不着了，所以只能忍痛全部扔掉；有些东西无论如何也不能扔（比如我的毕业证）；有些东西眼下用不着但是将来会有用（比如一大摞的书手动滑稽）所以也暂时不扔；有些东西可能突然某一天就不知道哪儿去了。其实想想这跟Java对象引用还蛮相似的。
 
-我们先来看看merge操作：
-
-假设我们开始在master分支上工作，有一个commit(1) 
-接着我们切一个dev分支出来">
-<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/1.png">
-<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/2.png">
-<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/3.png">
-<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/4.png">
-<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/5.png">
-<meta property="og:image" content="http://yoursite.com/img/git_revert_merge/6.png">
-<meta property="og:updated_time" content="2016-07-27T15:31:31.699Z">
+Java对象的引用分为四种类型，级别从高到低分别是：强引用、软引用、弱引用、虚引用。">
+<meta property="og:updated_time" content="2016-08-21T08:40:26.150Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git如何撤销已经merge的分支？">
-<meta name="twitter:description" content="在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？
+<meta name="twitter:title" content="Java引用类型">
+<meta name="twitter:description" content="前阵子搬家，收拾东西的时候有些苦恼：新租的房子面积很小，同时有些东西将来可能再也用不着了，所以只能忍痛全部扔掉；有些东西无论如何也不能扔（比如我的毕业证）；有些东西眼下用不着但是将来会有用（比如一大摞的书手动滑稽）所以也暂时不扔；有些东西可能突然某一天就不知道哪儿去了。其实想想这跟Java对象引用还蛮相似的。
 
-我们先来看看merge操作：
-
-假设我们开始在master分支上工作，有一个commit(1) 
-接着我们切一个dev分支出来">
-<meta name="twitter:image" content="http://yoursite.com/img/git_revert_merge/1.png">
+Java对象的引用分为四种类型，级别从高到低分别是：强引用、软引用、弱引用、虚引用。">
 
 
 
@@ -136,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/26/git_revert_merge/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/17/强引用&弱引用&软引用/"/>
 
-  <title> git如何撤销已经merge的分支？ | Bin Auyang's blog </title>
+  <title> Java引用类型 | Bin Auyang's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +262,7 @@
             
             
               
-                git如何撤销已经merge的分支？
+                Java引用类型
               
             
           </h1>
@@ -290,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-26T17:27:15+08:00" content="2016-07-26">
-              2016-07-26
+            <time itemprop="dateCreated" datetime="2016-08-17T00:12:40+08:00" content="2016-08-17">
+              2016-08-17
             </time>
           </span>
 
@@ -301,8 +285,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/26/git_revert_merge/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/26/git_revert_merge/" itemprop="commentsCount"></span>
+                <a href="/2016/08/17/强引用&弱引用&软引用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/强引用&弱引用&软引用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,7 +296,7 @@
 
           
           
-             <span id="/2016/07/26/git_revert_merge/" class="leancloud_visitors" data-flag-title="git如何撤销已经merge的分支？">
+             <span id="/2016/08/17/强引用&弱引用&软引用/" class="leancloud_visitors" data-flag-title="Java引用类型">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -335,24 +319,68 @@
 
       
         <blockquote>
-<p>在使用git的过程中，很多时候我们在merge分支之后发现有错误，需要撤销该操作。那么该如何操作呢？</p>
+<p>前阵子搬家，收拾东西的时候有些苦恼：新租的房子面积很小，同时有些东西将来可能再也用不着了，所以只能忍痛全部扔掉；有些东西无论如何也不能扔（比如我的毕业证）；有些东西眼下用不着但是将来会有用（比如一大摞的书<code>手动滑稽</code>）所以也暂时不扔；有些东西可能突然某一天就不知道哪儿去了。其实想想这跟Java对象引用还蛮相似的。</p>
 </blockquote>
-<p>我们先来看看merge操作：</p>
-<ol>
-<li>假设我们开始在<code>master</code>分支上工作，有一个commit(1)<br><img src="/img/git_revert_merge/1.png" alt=""> </li>
-<li>接着我们切一个<code>dev</code>分支出来<br><img src="/img/git_revert_merge/2.png" alt=""> <a id="more"></a></li>
-<li>在<code>dev</code>分支上提交一个commit(d1)<br><img src="/img/git_revert_merge/3.png" alt=""> </li>
-<li>接着再切回<code>master</code>分支，提交一个commit(2)<br><img src="/img/git_revert_merge/4.png" alt=""> </li>
-<li>这个时候我们想把<code>dev</code>分支merge进<code>master</code>分支<br><img src="/img/git_revert_merge/5.png" alt=""> </li>
-</ol>
-<p>我们来看看这次的<code>git log</code></p>
+<p>Java对象的引用分为四种类型，级别从高到低分别是：<code>强引用</code>、<code>软引用</code>、<code>弱引用</code>、<code>虚引用</code>。</p>
+<h2 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h2><p>我们使用的大部分引用都是<code>强引用</code>。如果一个对象拥有<code>强引用</code>，那就类似我的毕业证，就算房子装不下了也绝对<strong>不会</strong>被<code>垃圾回收器</code>「回收」。当内存空间不足时，JVM宁愿抛出<code>OutOfMemoryException</code>是程序异常终止也不会靠随意回收具有强引用的对象来解决空间不足的问题。<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Object object = <span class="keyword">new</span> Object(); <span class="comment">//object强引用</span></div></pre></td></tr></table></figure></p>
+<p>如果明确将不会使用该对象时，需要通过以下方式来弱化引用：<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">object = <span class="keyword">null</span>;</div></pre></td></tr></table></figure></p>
+<p>显式地设置object为null，或超出对象的生命周期范围，则垃圾回收器就可以回收这个对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">  Object object = <span class="keyword">new</span> Object();</div><div class="line">  ......</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在<code>test</code>方法中有一个强引用，该引用保存在栈中，真正的引用内容则保存在堆中，当这个方法运行完成之后就会退出方法栈，则引用内容的引用不存在，该Object就可能会被垃圾回收器回收。但当这个Object是全局变量时，就需要在不使用该对象的时候将其赋值为null。</p>
+<a id="more"></a>
+<h2 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h2><p>当内存空间足够时，垃圾回收器不会回收只有<code>软引用</code>指向的对象，但是当内存空间不足时，这些对象就会被回收！<code>软引用</code>可以用来实现内存敏感的高速缓存。</p>
+<p><code>软引用</code>可以与一个<code>引用队列</code>（Reference Queue）联合使用，如果<code>软引用</code>所引用的对象被回收，JVM就会把这个<code>软引用</code>加入到与之关联的<code>引用队列中</code>。<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">  String str = <span class="keyword">new</span> String(<span class="string">"abcd"</span>);  <span class="comment">//强引用</span></div><div class="line">SoftReference&lt;String&gt; softRef = <span class="keyword">new</span> SoftReference&lt;String&gt;(str);  <span class="comment">// 软引用</span></div></pre></td></tr></table></figure></p>
+<p><code>软引用</code>在实际中有重要的应用。例如点击浏览器的后退按钮应该重新请求还是从缓存中读取呢？有以下两点需要考虑：</p>
 <ul>
-<li>d1被插在1和2中间，这是因为merge是按照修改时间来合并的  [1]</li>
-<li>git自动帮我们生成了一个<code>merge commit</code>，且记录了<code>merge: 5faef94 5a7f607</code>，再仔细看我们会发现，<code>5faef94</code>就是commit(1)，而<code>5a7f607</code>则是commit(d1)!，也就是说这个<code>merge commit</code>其实是分别指向<code>master</code>和<code>dev</code>的<code>head</code>的。</li>
+<li>如果一个网页在浏览结束时就进行内容的回收（将对象设为null），那么在后退时需要重新构建之前的页面</li>
+<li>如果将浏览过的内容不进行回收，将会浪费大量内存。</li>
 </ul>
-<p><strong>在你合并两个分支并试图撤销时，Git 并不知道你到底需要保留哪一个分支上所做的修改。从 Git 的角度来看，master 分支和 dev 在地位上是完全平等的，只是在 workflow 中，master 被人为约定成了「主分支」。</strong></p>
-<p>所以git需要你提供<code>m</code>来指定「主线」，<code>m</code>的值可以是1或2，分别对应<code>master</code>和<code>dev</code>分支的<code>head</code>。<br><img src="/img/git_revert_merge/6.png" alt=""> </p>
-<p>看到了吗？在<code>merge commit</code>之后又有了一次commit，<code>master</code>分支的修改得以保留，而<code>dev</code>分支的修改全部被撤消了~</p>
+<p>这个时候<code>软引用</code>就很有用了！我们可以将浏览过的内容设为软引用：</p>
+<ul>
+<li>当内存空间不够时会被GC</li>
+<li>当内存空间足够的时候可以直接读取缓存。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Browser prev = <span class="keyword">new</span> Browser();</div><div class="line">SoftReference softRef = <span class="keyword">new</span> SoftReference(prev);</div><div class="line">prev = <span class="keyword">null</span>;</div><div class="line">......</div><div class="line"><span class="keyword">if</span>(softRef.get() != <span class="keyword">null</span>) &#123; <span class="comment">//还没有被GC，可直接获取对象</span></div><div class="line">  prev = (Browser) softRef.get();</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  prev = <span class="keyword">new</span> Browser(); <span class="comment">// 软引用的对象被回收了</span></div><div class="line">  softRef= <span class="keyword">new</span> SoftReference(prev); <span class="comment">//</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h2><p><code>弱引用</code>与<code>软引用</code>的区别在于：只拥有<code>弱引用</code>的对象拥有更短暂的生命周期。当垃圾回收器线程扫描它管辖的内存区域时，一旦发现了只有<code>弱引用</code>的对象，<strong>不管当前内存空间足够与否，都会回收它的内存</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">String str = <span class="keyword">new</span> String(<span class="string">"abcd"</span>);</div><div class="line">WeakReference weakRef = <span class="keyword">new</span> WeakRef(str);</div><div class="line"></div><div class="line">String str2 = weakRef.get(); <span class="comment">//再次获取强引用</span></div></pre></td></tr></table></figure>
+<p><em>P.S. 不过垃圾回收器线程的优先级很低，所以不一定会很快发现那些只具有弱引用的对象。</em></p>
+<p><code>弱引用</code>也可以与一个<code>引用队列</code>（Reference Queue）联合使用，如果<code>弱引用</code>所引用的对象被回收，JVM就会把这个<code>弱引用</code>加入到与之关联的<code>引用队列中</code>。</p>
+<h2 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h2><p>如果一个对象只具有<code>虚引用</code>，那么就跟没有引用一样，任何时候都可能被回收。<br><code>虚引用</code>通常用来跟踪对象被垃圾回收的活动。<code>虚引用</code>必须与一个<code>引用队列</code>联合使用，当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象内存之前，将该虚引用加入到与之关联的<code>引用队列</code>中。程序可以根据<code>引用队列</code>中是否已经加入<code>虚引用</code>来了解被引用的对象是否将要被垃圾回收。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">引用类型</th>
+<th style="text-align:center">被GC时间</th>
+<th style="text-align:center">用途</th>
+<th style="text-align:center">生存时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">强引用</td>
+<td style="text-align:center">NEVER</td>
+<td style="text-align:center">对象的一般状态</td>
+<td style="text-align:center">JVM停止运行时终止</td>
+</tr>
+<tr>
+<td style="text-align:center">软引用</td>
+<td style="text-align:center">内存不足时</td>
+<td style="text-align:center">对象缓存</td>
+<td style="text-align:center">内存不足时终止</td>
+</tr>
+<tr>
+<td style="text-align:center">弱引用</td>
+<td style="text-align:center">垃圾回收时</td>
+<td style="text-align:center">对象缓存</td>
+<td style="text-align:center">GC运行后终止</td>
+</tr>
+<tr>
+<td style="text-align:center">虚引用</td>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">Unknown</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -375,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag">#git</a>
+            <a href="/tags/Java/" rel="tag">#Java</a>
           
         </div>
       
@@ -384,16 +412,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/25/hexo/" rel="next" title="Hexo搭建博客日记">
-                <i class="fa fa-chevron-left"></i> Hexo搭建博客日记
+              <a href="/2016/08/17/zookeeper/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/27/crontab/" rel="prev" title="crontab基本用法">
-                crontab基本用法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/17/waiting on condition&waiting for monitor entry/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -420,8 +448,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/26/git_revert_merge/"
-           data-title="git如何撤销已经merge的分支？" data-url="http://yoursite.com/2016/07/26/git_revert_merge/">
+      <div class="ds-thread" data-thread-key="2016/08/17/强引用&弱引用&软引用/"
+           data-title="Java引用类型" data-url="http://yoursite.com/2016/08/17/强引用&弱引用&软引用/">
       </div>
     
   </div>
@@ -543,7 +571,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#强引用"><span class="nav-number">1.</span> <span class="nav-text">强引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软引用"><span class="nav-number">2.</span> <span class="nav-text">软引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱引用"><span class="nav-number">3.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚引用"><span class="nav-number">4.</span> <span class="nav-text">虚引用</span></a></li></ol></div>
             
           </div>
         </section>
